@@ -5,13 +5,13 @@ class I386ElfBinutils < Formula
   url 'http://ftp.gnu.org/gnu/binutils/binutils-2.23.tar.gz'
   sha1 '470c388c97ac8d216de33fa397d7be9f96c3fe04'
 
-  depends_on 'gcc49' => :build
+  depends_on 'gcc52' => :build
 
   def install
-    ENV['CC'] = '/usr/local/bin/gcc-4.9'
-    ENV['CXX'] = '/usr/local/bin/g++-4.9'
-    ENV['CPP'] = '/usr/local/bin/cpp-4.9'
-    ENV['LD'] = '/usr/local/bin/gcc-4.9'
+    ENV['CC'] = '/usr/local/bin/gcc-5.2'
+    ENV['CXX'] = '/usr/local/bin/g++-5.2'
+    ENV['CPP'] = '/usr/local/bin/cpp-5.2'
+    ENV['LD'] = '/usr/local/bin/gcc-5.2'
 
     mkdir 'build' do
       system '../configure', '--disable-nls', '--target=i386-elf',
