@@ -21,6 +21,8 @@ class I386ElfBinutils < Formula
       system 'make all'
       system 'make install'
       FileUtils.mv lib, libexec
+      FileUtils.mv info/"bfd.info", info/"i386-elf-bfd.info"
+      FileUtils.mv info/"binutils.info", info/"i386-elf-binutils.info"
     end
   end
 
