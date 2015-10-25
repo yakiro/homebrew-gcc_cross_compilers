@@ -14,6 +14,9 @@ class I386ElfGcc < Formula
 
   def install
     binutils = Formula.factory 'i386-elf-binutils'
+    gmp = Formula.factory 'gmp'
+    libmpc = Formula.factory 'libmpc'
+    mpfr = Formula.factory 'mpfr'
 
     ENV['CC'] = '/usr/local/bin/gcc-5'
     ENV['CXX'] = '/usr/local/bin/g++-5'
@@ -24,17 +27,22 @@ class I386ElfGcc < Formula
     mkdir 'build' do
       system '../configure', '--disable-nls', '--target=i386-elf', '--disable-werror',
                              "--prefix=#{prefix}",
-                             "--enable-languages=c",
+                             "--enable-languages=c,c++",
                              "--without-headers",
-                             "--with-gmp=/usr/local/Cellar/gmp/6.0.0a/",
-                             "--with-mpfr=/usr/local/Cellar/mpfr/3.1.3/",
-                             "--with-mpc=/usr/local/Cellar/libmpc/1.0.3/"
+                             "--with-gmp=#{gmp.prefix}",
+                             "--with-mpfr=#{mpfr.prefix}",
+                             "--with-mpc=#{libmpc.prefix}"
       system 'make all-gcc'
       system 'make install-gcc'
       FileUtils.ln_sf binutils.prefix/"i386-elf", prefix/"i386-elf"
       system 'make all-target-libgcc'
       system 'make install-target-libgcc'
       FileUtils.rm_rf share/"man"/"man7"
+      FileUtils.mv info/"cpp.info" info/"i386-elf-cpp.info"
+      FileUtils.mv info/"cppinternals.info" info/"i386-elf-cppinternals.info"
+      FileUtils.mv info/"gcc.info" info/"i386-elf-gcc.info"
+      FileUtils.mv info/"gccinstall.info" info/"i386-elf-gccinstall.info"
+      FileUtils.mv info/"gccint.info" info/"i386-elf-gccint.info"
     end
   end
 end
