@@ -38,11 +38,11 @@ class I386ElfGcc < Formula
       system 'make all-target-libgcc'
       system 'make install-target-libgcc'
       FileUtils.rm_rf share/"man"/"man7"
-      FileUtils.mv info/"cpp.info" info/"i386-elf-cpp.info"
-      FileUtils.mv info/"cppinternals.info" info/"i386-elf-cppinternals.info"
-      FileUtils.mv info/"gcc.info" info/"i386-elf-gcc.info"
-      FileUtils.mv info/"gccinstall.info" info/"i386-elf-gccinstall.info"
-      FileUtils.mv info/"gccint.info" info/"i386-elf-gccint.info"
+      FileUtils.mv info/"cpp.info", info/"i386-elf-cpp.info"
+      FileUtils.mv info/"cppinternals.info", info/"i386-elf-cppinternals.info"
+      FileUtils.mv info/"gcc.info", info/"i386-elf-gcc.info"
+      FileUtils.mv info/"gccinstall.info", info/"i386-elf-gccinstall.info"
+      FileUtils.mv info/"gccint.info", info/"i386-elf-gccint.info"
     end
   end
 end
